@@ -1,4 +1,5 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
+import Axios from 'axios';
 import './App.css';
 
 const App: React.FC = () => {
@@ -8,14 +9,31 @@ const App: React.FC = () => {
 
   const handleClick = (event: React.MouseEvent) => {
     setshowSpinner(true);
-    fetch('http://echo.jsontest.com/name/Per')
-      .then(results => results.json())
-      .then(results => {
+
+    Axios.get('http://echo.jsontest.com/name/Per')
+      .then(response => {
         setTimeout(() => {
-          setName(results.name);
+          setName(response.data.name);
           setshowSpinner(false);
         }, 2000);
+      })
+      .catch(function(error) {
+        console.error(error);
+      })
+      .finally(function() {
       });
+
+
+    // fetch('http://echo.jsontest.com/name/Per')
+    //   .then(results => results.json())
+    //   .then(results => {
+    //     setTimeout(() => {
+    //       setName(results.name);
+    //       setshowSpinner(false);
+    //     }, 2000);
+    //   });
+
+
   };
 
   return (
@@ -24,7 +42,7 @@ const App: React.FC = () => {
         <p>
           PER-APP
         </p>
-        <button data-cy='button' onClick={handleClick}>Fetch name</button>
+        <button data-cy='button' onClick={handleClick}>Get name</button>
         <p data-cy='result_holder'>
           {
             showSpinner

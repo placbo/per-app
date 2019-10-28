@@ -1,24 +1,20 @@
-describe('Cypress', () => {
-  it('test-test', () => {
+context('Network Requests', function() {
 
+  beforeEach(function() {
     cy.visit('/');
+  });
 
-
+  it('test-test', () => {
     cy.server();
-    cy.route('http://echo.jsontest.com/name/per', { 'name': 'ikke per' }).as('save');
-
+    cy.route('http://echo.jsontest.com/name/Per', { 'name': 'mocked per' }).as('getper');
     cy.get('[data-cy=button]').click();
-
-    cy.log('Hepp');
-
-    cy.get('[data-cy=result_holder]').should('contain','Per');
-
-    cy.wait('@save')
-      .its('request.body')
-      .should('deep.equal', {
-        'name': 'ikke per',
-      });
-
+    cy.get('[data-cy=result_holder]').should('contain', 'mocked per');
+    //cy.wait('@getper').its('status').should('eq', 200)
+    // cy.wait('@getper')
+    //   .its('request.body')
+    //   .should('deep.equal', {
+    //     'name': 'ikke per',
+    //   });
   });
 });
 
