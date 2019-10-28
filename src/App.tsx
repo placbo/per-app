@@ -24,6 +24,7 @@ const App: React.FC = () => {
       });
 
 
+    // AXIOS tåler ikke fetch
     // fetch('http://echo.jsontest.com/name/Per')
     //   .then(results => results.json())
     //   .then(results => {
