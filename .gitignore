@@ -21,3 +21,16 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# intellij
+.idea
+*.iml
+
+# vscode
+.vscode
+
+# cypress
+cypress/screenshots
+cypress/videos
+.nyc_output
+
