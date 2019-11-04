@@ -3,14 +3,8 @@ import Axios from 'axios';
 import './App.css';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
-import NoSsr from '@material-ui/core/NoSsr';
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider} from '@material-ui/core/styles';
 
-const jss = create({
-  ...jssPreset(),
-  insertionPoint: 'jss-insertion-point',
-});
 
 const App: React.FC = () => {
   const MainContainer = styled.div`
@@ -90,9 +84,7 @@ const App: React.FC = () => {
   };
 
   return (
-    //<StylesProvider injectFirst>
-    <StylesProvider jss={jss}>
-      <NoSsr>
+    <StylesProvider injectFirst>
         <MainContainer>
           <Header>PER-APP </Header>
           <ButtonContainer>
@@ -120,7 +112,6 @@ const App: React.FC = () => {
             name && <div data-cy="result">{showSpinner ? 'laster data...' : `Name: ${name}`}</div>
           )}
         </MainContainer>
-      </NoSsr>
     </StylesProvider>
   );
 };
